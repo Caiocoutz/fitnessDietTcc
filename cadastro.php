@@ -18,7 +18,7 @@
                 <h1>Não possui cadastro?</h1>
                 <p>É simples.</p>
             </div>
-            <form>
+            <form action="cadastrar.php" method="POST">
                 <h3>Fitness & Diet</h3>
                 <input id='nome' type="text" name="nome" placeholder="Nome">
                 <input id='email' type="email" name="email" placeholder="E-mail">
@@ -30,8 +30,8 @@
                 <div class="social">
                     <p>Cadastre-se com suas redes-sociais:</p>
                     <ul>
-                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://pt-br.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a></li>
                     </ul>
                 </div>
             </form>
