@@ -47,8 +47,107 @@
         </div>
 
         <button class="btn">Adicionar</button>
+        <button class="btn" onclick="addData()">Salvar</button>
       </form>
     </div>
+    <div class="container2">
+      <canvas id="chart"></canvas>
+  </div>
+  <script src="./node_modules/chart.js/dist/chart.js"></script>
+  <script>
+    var ctx = document.getElementById('chart').getContext('2d');
+
+var chart = new Chart(ctx, {
+// The type of chart we want to create
+type: 'line',
+// The data for our dataset
+data: {
+    labels: [],
+    datasets: [{
+        label: "Calorias diárias",
+        backgroundColor: [
+            'green'
+        ],
+        borderColor: ['green'],
+        data: []
+    },
+    {
+        label: "Qtd. adequada para perder peso",
+        backgroundColor: [
+            'blue'
+        ],
+        borderColor: ['blue'],
+        data: [],
+        type: 'line'
+    },
+    {
+        label: "Qtd. adequada para manter peso",
+        backgroundColor: [
+            'red'
+        ],
+        borderColor: ['red'],
+        data: [],
+        type: 'line'
+    },
+    {
+        label: "Qtd. adequada para aumentar peso",
+        backgroundColor: [
+            'gray'
+        ],
+        borderColor: ['gray'],
+        data: [],
+        type: 'line'
+    }
+]
+},
+// Configuration options go here
+options: {
+    animation: {
+        duration: 3000
+    }
+},
+layout: {
+    padding: {
+        left: 150,
+        right: 150
+    }
+}
+});
+var container2 = document.querySelector(".container2")
+
+var addData = () => {
+container2.style.display = "flex"
+
+let calorias = {};
+
+fetch(`contCal.php?requisicao=calChart`)
+    .then((response) => {
+        return response.json()
+    })
+    .then(function(data){
+        // let json=JSON.parse(data)
+        calorias = data.data
+    })
+
+var sizeData = chart.data.datasets[0].data.length
+chart.data.datasets[0].data[sizeData] = 2400
+
+chart.data.labels[sizeData] = `New Data ${sizeData + 1}`
+chart.update()
+
+var sizeData2 = chart.data.datasets[1].data.length
+chart.data.datasets[1].data[sizeData2] = 2270
+chart.update()
+
+var sizeData3 = chart.data.datasets[2].data.length
+chart.data.datasets[2].data[sizeData3] = 2720
+chart.update()
+
+var sizeData4 = chart.data.datasets[3].data.length
+chart.data.datasets[3].data[sizeData2] = 3170
+chart.update()
+}
+</script>
     <footer>
         <div class="footer-content">
             <p>
